@@ -11,13 +11,18 @@ if (isset($_POST['submit'])) {
  $captcha = $_POST["captcha"];
  $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
  $result = mysqli_query($conn, $sql);
-
+ 
+ if ($captcha == $_SESSION["captcha"]){
+    echo "";
+ } else {
+    echo "<script>alert('Captcha Anda salah. Silahkan coba lagi!')</script>";
+ }
  if ($result->num_rows > 0 && $captcha == $_SESSION["captcha"]) {
  $row = mysqli_fetch_assoc($result);
  $_SESSION['username'] = $row['username'];
  header("Location: jadwal.php");
  } else {
- echo "<script>alert('Username atau Password atau Captcha Anda salah. Silahkan coba lagi!')</script>";
+ echo "<script>alert('Username atau Password Anda salah. Silahkan coba lagi!')</script>";
  }
 
 }
