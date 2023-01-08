@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
  <link rel="stylesheet" type="text/css" href="css/style.css">
  <title>PT. Xyz</title>
 </head>
-<!-- <script>
+<script>
     var xhttp = false;
     if(window.XMLHttpRequest){
         xhttp = new XMLHttpRequest();
@@ -51,11 +51,11 @@ if (isset($_POST['submit'])) {
         var username=document.getElementById('username').value;
         var password=document.getElementById('password').value;
         var captcha=document.getElementById('captcha').value;
-        xhttp.open("GET", "http://localhost/jadwal/jadwal.php?u="+username+"$password="+password+"$nilaiCaptcha="+captcha, true);
+        xhttp.open("GET", "http://localhost/jadwal/login.php?u="+username+"$password="+password+"$nilaiCaptcha="+captcha, true);
         xhttp.send(nuLL);
     }
 
-</script> -->
+</script> 
 <body>
  </div>
 
