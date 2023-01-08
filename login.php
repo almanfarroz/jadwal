@@ -1,24 +1,33 @@
 <?php
-include 'config.php';
+include 'config/koneksi.php';
 error_reporting(0);
 session_start();
 if (isset($_SESSION['username'])) {
- header("Location: berhasil_login.php");
+ header("Location: jadwal.php");
 }
 if (isset($_POST['submit'])) {
- $email = $_POST['email'];
+ $username = $_POST['username'];
  $password = md5($_POST['password']);
- $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+ $captcha = $_POST["captcha"];
+ $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
  $result = mysqli_query($conn, $sql);
+
+ if ( $captcha == $_SESSION["captcha"]){
+    echo "";
+ } else {
+    echo "<script>alert('Captcha Anda salah. Silahkan coba lagi!')</script>";
+ }
  if ($result->num_rows > 0) {
  $row = mysqli_fetch_assoc($result);
  $_SESSION['username'] = $row['username'];
- header("Location: berhasil_login.php");
+ header("Location: jadwal.php");
  } else {
- echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+ echo "<script>alert('Username atau Password atau Captcha Anda salah. Silahkan coba lagi!')</script>";
  }
+
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,31 +37,69 @@ if (isset($_POST['submit'])) {
  <link rel="stylesheet" type="text/css" href="css/style.css">
  <title>PT. Xyz</title>
 </head>
+<!-- <script>
+    var xhttp = false;
+    if(window.XMLHttpRequest){
+        xhttp = new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+
+    function login(){
+        xhttp.responseText;
+        xhttp.abort();
+        xhttp.onreadystatechange=function(){
+            if(xhttp.readyState == 4 && xhttp.status == 200){
+                document.getElementById('pesan').innerHTML = xhttp.responseText;
+            }
+        }
+
+        var username=document.getElementById('username').value;
+        var password=document.getElementById('password').value;
+        var captcha=document.getElementById('captcha').value;
+        xhttp.open("GET", "http://localhost/jadwal/jadwal.php?u="+username+"$password="+password+"$nilaiCaptcha="+captcha, true);
+        xhttp.send(nuLL);
+    }
+
+</script> -->
 <body>
- <div class="alert alert-warning" role="alert">
- <?php echo $_SESSION['error']?>
  </div>
- <div class="container">
- <form action="hasil.php" method="POST" class="login-email">
- <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
- <div class="input-group">
- <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>"
-required>
- </div>
- <div class="input-group">
- <input type="password" placeholder="Password" name="password" value="<?php echo
-$_POST['password']; ?>" required>
- </div>
- <div class="input-group">
-    <img src="gambar.php" alt="gambar"/>
- <input name="nilaiCaptcha" value="" maxlength="<?php echo
-$_POST['password']; ?>" required>
- </div>
- <div class="input-group">
- <button name="submit" class="btn">Login</button>
- </div>
- <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
- </form>
- </div>
+
+    <div class="center">
+        <br>
+        <img src="images/pnj.jpg" alt="logo" style="width:100px;height:100px;">
+        <h1>Login</h1>
+
+    <form method="POST" id="form" >
+        <div class="txt_field">
+        <input type="username" placeholder="Username" name="username" required>
+        <span></span>
+        <label for="user">Username</label>
+        </div>
+
+        <div class="txt_field">
+        <input type="password" placeholder="Password" name="password" required>
+        <span></span>
+        <label for="password">Password</label>
+        </div>
+
+        <div class="">
+        <img src="function/captcha.php" alt="captcha" class="captcha-image">
+        </div>
+
+        <div class="txt_field">
+        <input type="text" name="captcha" id="captcha" class="form-control" required>
+        <span></span>
+        <label for="captcha">captcha</label>
+        </div>
+        
+        <input type="submit" name="submit" style="margin: 5px" class="btn1">
+        <h2>Or</h2>
+        <input type="submit" value="Login as User" class="btn2">
+        <p style="text-align:center" class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
+
+    </form>
+    <br>
+</div>
 </body>
 </html>

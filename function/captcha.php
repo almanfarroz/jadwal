@@ -2,7 +2,7 @@
 
 session_start();
 header("Content-type: image/png"); 
-$_SESSION["Captcha"]="";
+$_SESSION["captcha"]="";
 
 //tentukan ukuran gambar 
 $gbr = imagecreate(200, 50);
@@ -20,7 +20,7 @@ $font = "monaco.ttf";
 // jumlah karakter
 for($i=0;$i<=5;$i++){
 $nomor=rand(0, 9);
-$_SESSION["Captcha"].=$nomor;
+$_SESSION["captcha"].=$nomor;
 $sudut = rand(-25, 25); 
 imagettftext ($gbr, 20, $sudut, 8+15*$i, 25, $black, $font, $nomor);
 // efek shadow
