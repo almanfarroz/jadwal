@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
         var username=document.getElementById('username').value;
         var password=document.getElementById('password').value;
         var captcha=document.getElementById('captcha').value;
-        xhttp.open("GET", "http://localhost/jadwal/login.php?u="+username+"$password="+password+"$nilaiCaptcha="+captcha, true);
+        xhttp.open("GET", "http://localhost/jadwal/login.php?u="+username+"$password="+password+"$captcha="+captcha, true);
         xhttp.send(nuLL);
     }
 
