@@ -71,10 +71,8 @@ include 'config/koneksi.php';
 
         <div class="outer-wrapper">
             <div class="table-wrapper">
-
-                <table class=" m-auto border-black  border-2 ">
-                    <thead class="bg-black  text-white w-full">
-
+                <table border="2" align="center">
+                    <thead>
                         <tr>
                             <th>No</th>
                             <th>Hari</th>
@@ -108,7 +106,6 @@ include 'config/koneksi.php';
                                 <td><a href="finput_book.php?id=<?= $data['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $data['id']?>" class="text-danger">Hapus</a></td>
                             </tr>
                         </tbody>
-
                     <?php endforeach; ?>
 
             </div>
