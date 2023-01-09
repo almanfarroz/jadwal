@@ -90,28 +90,26 @@ include 'config/koneksi.php';
                         </tr>
                     </thead>
 
-                    <?php 
+                    <?php
                     $value = mysqli_query($conn, "SELECT * FROM jadwal");
-                    foreach ($value as $value){
-                        echo "<tbody>";
-                                echo "<td>".$value['id']."</td>";
-                                echo "<td>".$value['hari']."</td>";
-                                echo "<td>".$value['slot_waktu']."</td>";
-                                echo "<td>".$value['kelas']."</td>";
-                                echo "<td>".$value['dosen']."</td>";
-                                echo "<td>".$value['ruang']."</td>";
-                                echo "<td>".$value['mata_kuliah']."</td>";
-                                echo "<td>".$value['tahun_ajaran']."</td>";
-                                echo "<td>".$value['semester']."</td>";
-                                echo "<td>".$value['jumlah_jam']."</td>";
-                                echo "<td>"."</td>";
-                                echo "</tr>";
-                    }
-                    echo "</tbody>";
-
                     ?>
+                    <?php foreach ($value as $value) : ?>
+                        <tbody style="height: 10vh;">
+                                <td><?php echo $value ['id']; ?></td>
+                                <td><?php echo $value ['hari']; ?></td>
+                                <td><?php echo $value ['slot_waktu']; ?></td>
+                                <td><?php echo $value ['kelas']; ?></td>
+                                <td><?php echo $value ['dosen']; ?></td>
+                                <td><?php echo $value ['ruang']; ?></td>
+                                <td><?php echo $value ['mata_kuliah']; ?></td>
+                                <td><?php echo $value ['tahun_ajaran']; ?></td>
+                                <td><?php echo $value ['semester']; ?></td>
+                                <td><?php echo $value ['jumlah_jam']; ?></td>
+                                <td><a href="finput_book.php?id=<?= $data['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $data['id']?>" class="text-danger">Hapus</a></td>
+                            </tr>
+                        </tbody>
 
-                </table>
+                    <?php endforeach; ?>
 
             </div>
         </div>
