@@ -1,0 +1,17 @@
+{
+    "name": "alman/jadwal",
+    "autoload": {
+        "psr-4": {
+            "Alman\\Jadwal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "almanfarroz",
+            "email": "alman.farroz@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.26"
+    }
+}
