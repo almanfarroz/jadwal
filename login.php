@@ -3,7 +3,7 @@ include 'config/koneksi.php';
 error_reporting(0);
 session_start();
 if (isset($_SESSION['username'])) {
- header("Location: jadwal.php");
+ header("Location: admin.php");
 }
 if (isset($_POST['submit'])) {
  $username = $_POST['username'];
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
  if ($result->num_rows > 0 && $captcha == $_SESSION["captcha"]) {
  $row = mysqli_fetch_assoc($result);
  $_SESSION['username'] = $row['username'];
- header("Location: jadwal.php");
+ header("Location: admin.php");
  } else {
  echo "<script>alert('Username atau Password atau Captcha Anda salah. Silahkan coba lagi!')</script>";
  }
@@ -30,6 +30,11 @@ if (isset($_POST['submit'])) {
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/fontawesome.min.css">
  <link rel="stylesheet" type="text/css" href="css/style.css">
  <title>PT. Xyz</title>
+ <style>
+    body{
+        background-image: url(images/foto.jpg);
+    }
+ </style>
 </head>
 <script>
     var xhttp = false;
