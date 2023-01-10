@@ -16,7 +16,7 @@ if (!isset($_SESSION['username'])) {
 <body>
  <div class="container-logout">
  <form action="" method="POST" class="login-email">
- <?php echo "<h1>Selamat Datang, " . $_SESSION['username'] ."!". "</h1>"; ?>
+ <?php echo "<h1>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h1>"; ?>
 
  <div class="input-group">
  <a href="logout.php" class="btn">Logout</a>

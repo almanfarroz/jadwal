@@ -1,7 +1,10 @@
 <?php
 
 include 'config/koneksi.php';
-
+session_start();
+if (!isset($_SESSION['username'])) {
+ header("Location: index.php");
+}
 
 
 ?>
@@ -31,7 +34,7 @@ include 'config/koneksi.php';
                 <a href="logout.php" class="button-1">Log Out</a>
             </div>
             <div class="content">
-                <h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA</h2>
+            <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h2>"; ?>
                 <div class="pil">
                     <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
                     <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
@@ -39,17 +42,17 @@ include 'config/koneksi.php';
                 </div>
                 <!-- <?php
 
-  if($_GET['sort']=='dosen')
+  if($_POST['sort']=='dosen')
   {
       $keys = array_column($jadwal, 'Dosen');
       array_multisort($keys, SORT_ASC, $jadwal);
   }
-  else if($_GET['sort']=='hari')
+  else if($_POST['sort']=='hari')
   {
       $keys = array_column($jadwal, 'Hari');
       array_multisort($keys, SORT_DESC, $jadwal);
   }
-  else if($_GET['sort']=='kelas')
+  else if($_POST['sort']=='kelas')
   {
       $keys = array_column($jadwal, 'Kelas');
       array_multisort($keys, SORT_ASC, $jadwal);
@@ -68,6 +71,44 @@ include 'config/koneksi.php';
                     </button>
                 </div>
             </form>
+
+            <form method="post" align="center" class="search" style="margin:auto;max-width:300px">
+    <input type="text" name="inputan" placeholder="cari...">
+    <button type="submit" name="cari" value="cari"><i class="fa fa-search"></i></button><br>
+  </form>
+<br>
+    <?php
+    function search($arr, $query){$no=1;
+        foreach ($arr as $value):
+        foreach($value as $data):
+            if(str_contains($data, $query)):
+    ?>
+    <tbody style="height: 5vh;">
+    <tr>
+        <td><?= $no++ ?></td>
+        <td><?= $value["hari"] ?></td>
+        <td><?= $value["slot_waktu"] ?></td>
+        <td><?= $value["kelas"] ?></td>
+        <td><?= $value["dosen"] ?></td>
+        <td><?= $value["ruang"] ?></td>
+        <td><?= $value["mata_kuliah"] ?></td>
+        <td><?= $value["tahun_ajaran"] ?></td>
+        <td><?= $value["semester"] ?></td>
+        <td><?= $value["jumlah_jam"] ?></td>
+        <td>
+        <a href="finput_book.php?id=<?php $value['id'] ?>">Ubah</a>
+        <a href="delete_book.php?id=<?php $value['id'] ?>">Delete</a>
+        </td>
+    </tr>
+    <?php break;?>
+    </tbody>
+
+    <?php 
+        endif;
+        endforeach;
+        endforeach;
+    }  
+    ?>
 
         <div class="outer-wrapper">
             <div class="table-wrapper">
@@ -91,8 +132,9 @@ include 'config/koneksi.php';
                     <?php
                     $value = mysqli_query($conn, "SELECT * FROM jadwal");
                     ?>
+                    <?php if (isset($_POST['cari'])) {search($value, $_POST['inputan']);}else {?>
                     <?php foreach ($value as $value) : ?>
-                        <tbody style="height: 10vh;">
+                        <tbody style="height: 5vh;">
                                 <td><?php echo $value ['id']; ?></td>
                                 <td><?php echo $value ['hari']; ?></td>
                                 <td><?php echo $value ['slot_waktu']; ?></td>
@@ -103,11 +145,11 @@ include 'config/koneksi.php';
                                 <td><?php echo $value ['tahun_ajaran']; ?></td>
                                 <td><?php echo $value ['semester']; ?></td>
                                 <td><?php echo $value ['jumlah_jam']; ?></td>
-                                <td><a href="finput_book.php?id=<?= $data['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $data['id']?>" class="text-danger">Hapus</a></td>
+                                <td><a href="finput_book.php?id=<?= $value['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $value['id']?>" class="text-danger">Hapus</a></td>
                             </tr>
                         </tbody>
                     <?php endforeach; ?>
-
+                    <?php }; ?>
             </div>
         </div>
     </body>
