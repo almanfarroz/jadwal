@@ -1,14 +1,14 @@
 {
-    "name": "alman/jadwal",
+    "name": "hp/jadwal",
     "autoload": {
         "psr-4": {
-            "Alman\\Jadwal\\": "src/"
+            "Hp\\Jadwal\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "almanfarroz",
-            "email": "alman.farroz@gmail.com"
+            "name": "mfhmiii",
+            "email": "fahmizhd52@gmail.com"
         }
     ],
     "require": {

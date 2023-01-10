@@ -1,9 +1,6 @@
 <?php
-
 include 'config/koneksi.php';
-
-
-
+include 'function/crud.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +55,7 @@ include 'config/koneksi.php';
 
   <br>
 
-  <form action="upload.php" method="post" enctype="multipart/form-data">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="m-4">
                     <input type="file" id="file" name="fileToUpload" class="custom-file-input" />
                 </div>
@@ -68,6 +65,8 @@ include 'config/koneksi.php';
                     </button>
                 </div>
             </form>
+
+            <a href="tambah.php">Tambah Data</a>
 
         <div class="outer-wrapper">
             <div class="table-wrapper">
@@ -89,7 +88,8 @@ include 'config/koneksi.php';
                     </thead>
 
                     <?php
-                    $value = mysqli_query($conn, "SELECT * FROM jadwal");
+                    // $value = mysqli_query($conn, "SELECT * FROM jadwal");
+                    $value = query("SELECT * FROM jadwal");
                     ?>
                     <?php foreach ($value as $value) : ?>
                         <tbody style="height: 10vh;">
