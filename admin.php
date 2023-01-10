@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['username'])) {
  header("Location: index.php");
 }
-
+include 'function/crud.php';
 
 ?>
 <!DOCTYPE html>
@@ -19,12 +19,6 @@ if (!isset($_SESSION['username'])) {
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Jadwal Perkuliahan Teknik Informatika</title>
-        <style>
-        .scroll{
-          height: 400px;
-          overflow: scroll;
-        }
-        </style>
     </head>
     <body style="background-image: url(img/bgpnj.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
         <div class="body">
@@ -36,28 +30,30 @@ if (!isset($_SESSION['username'])) {
             <div class="content">
             <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h2>"; ?>
                 <div class="pil">
-                    <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
-                    <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
-                    <button value="hari" onclick="location.href='?sort=hari';">Hari</button>
+                    <button value="Kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
+                    <button value="Dosen" onclick="location.href='?sort=dosen';">Dosen</button>
+                    <button value="Hari" onclick="location.href='?sort=hari';">Hari</button>
                 </div>
-                <!-- <?php
+                 <!-- <?php
 
-  if($_POST['sort']=='dosen')
+  if($_POST['sort']=='Dosen')
   {
-      $keys = array_column($jadwal, 'Dosen');
-      array_multisort($keys, SORT_ASC, $jadwal);
+      $keys = array_column($value, 'dosen');
+      array_multisort($keys, SORT_ASC, $value);
   }
-  else if($_POST['sort']=='hari')
+  else if($_POST['sort']=='Hari')
   {
-      $keys = array_column($jadwal, 'Hari');
-      array_multisort($keys, SORT_DESC, $jadwal);
+      $keys = array_column($value, 'hari');
+      array_multisort($keys, SORT_DESC, $value);
   }
-  else if($_POST['sort']=='kelas')
+  else if($_POST['sort']=='Kelas')
   {
-      $keys = array_column($jadwal, 'Kelas');
-      array_multisort($keys, SORT_ASC, $jadwal);
+      $keys = array_column($value, 'kelas');
+      array_multisort($keys, SORT_ASC, $value);
   }
-?> -->
+?>   -->
+
+
 
   <br>
 
@@ -109,7 +105,7 @@ if (!isset($_SESSION['username'])) {
         endforeach;
     }  
     ?>
-
+     <a href="tambah.php">Tambah Data</a>
         <div class="outer-wrapper">
             <div class="table-wrapper">
                 <table border="2" align="center">
@@ -145,7 +141,7 @@ if (!isset($_SESSION['username'])) {
                                 <td><?php echo $value ['tahun_ajaran']; ?></td>
                                 <td><?php echo $value ['semester']; ?></td>
                                 <td><?php echo $value ['jumlah_jam']; ?></td>
-                                <td><a href="finput_book.php?id=<?= $value['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $value['id']?>" class="text-danger">Hapus</a></td>
+                                <td><a href="edit.php?id=<?= $value['id']?>">Ubah</a> | <a href="hapus.php?id=<?= $value['id']?>" class="text-danger">Hapus</a></td>
                             </tr>
                         </tbody>
                     <?php endforeach; ?>
