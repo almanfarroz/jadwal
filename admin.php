@@ -103,7 +103,8 @@ include 'function/crud.php';
                                 <td><?php echo $value ['tahun_ajaran']; ?></td>
                                 <td><?php echo $value ['semester']; ?></td>
                                 <td><?php echo $value ['jumlah_jam']; ?></td>
-                                <td><a href="finput_book.php?id=<?= $data['id']?>">Ubah</a> | <a href="delete_book.php?id=<?= $data['id']?>" class="text-danger">Hapus</a></td>
+                                <td><a href="edit.php?id=<?= $value['id']?>">Edit</a> | 
+                                <a href="hapus.php?id=<?= $value['id']?>" class="text-danger">Hapus</a></td>
                             </tr>
                         </tbody>
                     <?php endforeach; ?>

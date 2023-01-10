@@ -1,7 +1,7 @@
 <?php
 include 'config/koneksi.php';
 include 'function/crud.php';
-// 
+// menampilkan konfirmasi tambah data
 if ( isset($_POST["submit"]) ) {
 
     // info data berhasil diinput
