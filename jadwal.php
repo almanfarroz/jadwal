@@ -152,16 +152,16 @@ session_start();
                     <div class="pagination">
 
                         <?php 
-                        echo '<a href="/jadwal/admin.php?page='.($page-1).'">&laquo;</a>';
+                        echo '<a href="/jadwal/jadwal.php?page='.($page-1).'">&laquo;</a>';
 
                         for($i=0;$i<$jumlah_page;$i++){
                             if($page == $i+1)
-                                echo '<a class="active" href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
+                                echo '<a class="active" href="/jadwal/jadwal.php?page='.($i+1).'">'.($i+1).'</a>';
                             else
-                                echo '<a href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
+                                echo '<a href="/jadwal/jadwal.php?page='.($i+1).'">'.($i+1).'</a>';
                         }
 
-                        echo '<a href="/jadwal/admin.php?page='.($page+1).'">&raquo;</a>';
+                        echo '<a href="/jadwal/jadwal.php?page='.($page+1).'">&raquo;</a>';
                         
                         ?>
 
