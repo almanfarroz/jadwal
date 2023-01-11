@@ -29,55 +29,57 @@ if ( isset($_POST["submit"]) ) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylecrud.css">
     <title>Tambah Data Jadwal</title>
 </head>
 <body>
-    <h2>Tambah Data Mahasiswa</h2>
-    <form action="" method="post">
-        <ul>
-            <!-- <li>
-                <input type="hidden" name="id">
-            </li> -->
-            <li>
-                <label for="hari">Hari =</label>
-                <input type="text" name="hari">
-            </li>
-            <li>
-                <label for="slot_waktu">Slot Waktu =</label>
-                <input type="text" name="slot_waktu">
-            </li>
-            <li>
-                <label for="kelas">Kelas =</label>
-                <input type="text" name="kelas">
-            </li>
-            <li>
-                <label for="dosen">Dosen =</label>
-                <input type="text" name="dosen">
-            </li>
-            <li>
-                <label for="ruang">Ruang =</label>
-                <input type="text" name="ruang">
-            </li>
-            <li>
-                <label for="mata_kuliah">Mata Kuliah =</label>
-                <input type="text" name="mata_kuliah">
-            </li>
-            <li>
-                <label for="tahun_ajaran">Tahun Ajaran =</label>
-                <input type="text" name="tahun ajaran">
-            </li>
-            <li>
-                <label for="semester">Semester =</label>
-                <input type="text" name="semester">
-            </li>
-            <li>
-                <label for="jumlah_jam">Jumlah Jam  =</label>
-                <input type="text" name="jumlah_jam">
-            </li>
-            <li>
-                <button type="submit" name="submit">Tambah</button>
-            </li>
-        </ul>
-    </form>
+<div class="container">
+        <h1>Tambah Data Mahasiswa</h1>
+    <table>
+        <tr>
+            <td><label for="hari">Hari</label></td>
+            <td>=</td>
+            <td><input type="text" name="hari"></td>
+        </tr>
+        <tr>
+            <td><label for="kelas">Kelas</label></td>
+            <td>=</td>
+            <td><input type="text" name="kelas"></td>
+        </tr>
+        <tr>
+            <td><label for="dosen">Dosen</label></td>
+            <td>=</td>
+            <td><input type="text" name="dosen"></td>
+        </tr>
+        <tr>
+            <td><label for="ruang">Ruang</label></td>
+            <td>=</td>
+            <td><input type="text" name="ruang"></td>
+        </tr>
+        <tr>
+            <td><label for="mata_kuliah">Mata Kuliah</label></td>
+            <td>=</td>
+            <td><input type="text" name="mata_kuliah"></td>
+        </tr>
+        <tr>
+            <td><label for="tahun_ajaran">Tahun Ajaran</label></td>
+            <td>=</td>
+            <td><input type="text" name="tahun_ajaran"></td>
+        </tr>
+        <tr>
+            <td><label for="semester">Slot Waktu</label></td>
+            <td>=</td>
+            <td><input type="text" name="semester"></td>
+        </tr>
+        <tr>
+            <td><label for="jumlah_jam">Jumlah Jam</label></td>
+            <td>=</td>
+            <td><input type="text" name="jumlah_jam"></td>
+        </tr>
+        <td></td>
+        <td></td>
+        <td><button type="submit" name="submit">Tambah</button></td>
+</table>
+</div>
 </body>
 </html>

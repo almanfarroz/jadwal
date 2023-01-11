@@ -1,0 +1,27 @@
+input[type=file] {
+    margin-right: 40px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    background: #2691d9;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #2691d9;
+  }
+
+  .tambahButton{
+    background: #2691d9;
+  }

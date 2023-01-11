@@ -3,7 +3,7 @@
 include 'config/koneksi.php';
 session_start();
 if (!isset($_SESSION['username'])) {
- header("Location: index.php");
+ header("Location: admin.php");
 }
 include 'function/crud.php';
 
@@ -17,6 +17,7 @@ include 'function/crud.php';
         <link rel="stylesheet" href="css/style2.css">
         <link rel="stylesheet" href="css/style1.css">
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/upload.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Jadwal Perkuliahan Teknik Informatika</title>
     </head>
@@ -30,45 +31,40 @@ include 'function/crud.php';
             <div class="content">
             <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h2>"; ?>
                 <div class="pil">
-                    <button value="Kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
-                    <button value="Dosen" onclick="location.href='?sort=dosen';">Dosen</button>
-                    <button value="Hari" onclick="location.href='?sort=hari';">Hari</button>
+                    <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
+                    <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
+                    <button value="hari" onclick="location.href='?sort=hari';">Hari</button>
                 </div>
-                 <!-- <?php
+                  <!-- <?php
 
-  if($_POST['sort']=='Dosen')
+  if($_POST['sort']=='dosen')
   {
       $keys = array_column($value, 'dosen');
       array_multisort($keys, SORT_ASC, $value);
   }
-  else if($_POST['sort']=='Hari')
+  else if($_POST['sort']=='hari')
   {
       $keys = array_column($value, 'hari');
       array_multisort($keys, SORT_DESC, $value);
   }
-  else if($_POST['sort']=='Kelas')
+  else if($_POST['sort']=='kelas')
   {
       $keys = array_column($value, 'kelas');
       array_multisort($keys, SORT_ASC, $value);
   }
 ?>   -->
-
-
-
   <br>
 
   <form action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="m-4">
                     <input type="file" id="file" name="fileToUpload" class="custom-file-input" />
-                </div>
-                <div>
-                    <button type="submit" name="upload" class="bg-slate-50 border-black border-2 hover:bg-black hover:text-white text-black font-bold py-2 px-4 " id="addButton">
+                    <button type="submit" name="upload" class="bg-slate-50 border-black border-2 hover:bg-black hover:text-white text-black font-bold py-2 px-4 " id="tambahButton" style="background: #2691d9;border-radius: 10px;padding: 10px 20px; text-align:center; margin-top: 7px;color: #fff;margin-right: 20px;">
                         Upload Excel
                     </button>
                 </div>
             </form>
 
-            <form method="post" align="center" class="search" style="margin:auto;max-width:300px">
+            <form method="post" align="center" class="search" style="margin:auto;max-width:300px; margin-top:10px">
     <input type="text" name="inputan" placeholder="cari...">
     <button type="submit" name="cari" value="cari"><i class="fa fa-search"></i></button><br>
   </form>
@@ -79,7 +75,7 @@ include 'function/crud.php';
         foreach($value as $data):
             if(str_contains($data, $query)):
     ?>
-    <tbody style="height: 5vh;">
+    <tbody style="height: 3vh;">
     <tr>
         <td><?= $no++ ?></td>
         <td><?= $value["hari"] ?></td>
@@ -106,8 +102,6 @@ include 'function/crud.php';
     }  
     ?>
      <a href="tambah.php">Tambah Data</a>
-        <div class="outer-wrapper">
-            <div class="table-wrapper">
                 <table border="2" align="center">
                     <thead>
                         <tr>
@@ -130,7 +124,7 @@ include 'function/crud.php';
                     ?>
                     <?php if (isset($_POST['cari'])) {search($value, $_POST['inputan']);}else {?>
                     <?php foreach ($value as $value) : ?>
-                        <tbody style="height: 5vh;">
+                        <tbody style="height: 3vh;">
                                 <td><?php echo $value ['id']; ?></td>
                                 <td><?php echo $value ['hari']; ?></td>
                                 <td><?php echo $value ['slot_waktu']; ?></td>
@@ -146,8 +140,6 @@ include 'function/crud.php';
                         </tbody>
                     <?php endforeach; ?>
                     <?php }; ?>
-            </div>
-        </div>
     </body>
 </html>
 
