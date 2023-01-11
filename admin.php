@@ -21,7 +21,7 @@ include 'function/crud.php';
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Jadwal Perkuliahan Teknik Informatika</title>
     </head>
-    <body style="background-image: url(img/bgpnj.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
+    <body style="background-image: url(images/foto.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
         <div class="body">
             <div class="header">
                 <h2>JADWAL PERKULIAHAN</h2>
@@ -63,12 +63,14 @@ include 'function/crud.php';
                     </button>
                 </div>
             </form>
-
+            <br>
+            <a style="background-color: #2691d9;border: 1px solid black;padding: 10px 20px;border-radius: 50px; text-decoration:none;color:#fff;" href="tambah.php">Tambah Data</a>
+            <br><br>
             <form method="post" align="center" class="search" style="margin:auto;max-width:300px; margin-top:10px">
     <input type="text" name="inputan" placeholder="cari...">
     <button type="submit" name="cari" value="cari"><i class="fa fa-search"></i></button><br>
   </form>
-<br>
+
     <?php
     function search($arr, $query){$no=1;
         foreach ($arr as $value):
@@ -101,7 +103,7 @@ include 'function/crud.php';
         endforeach;
     }  
     ?>
-     <a href="tambah.php">Tambah Data</a>
+     <br><br>
                 <table border="2" align="center">
                     <thead>
                         <tr>

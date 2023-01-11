@@ -107,7 +107,8 @@ if (isset($_POST['submit'])) {
         
         <input type="submit" name="submit" style="margin: 5px" class="btn1">
         <h2>Or</h2>
-        <input type="submit" href="jadwal.php" value="Login as User" class="btn2">
+        <a href="jadwal.php" style="width: 100%;height: 50px;border: 1px solid;background: #2691d9;border-radius: 25px;font-size: 18px;color: #e9f4fb; font-weight: 700;cursor: pointer;outline: none;text-decoration:none;padding:10px 98px; text-align:center;" href="tambah.php">Login as User</a>
+        <br><br>
         <p style="text-align:center" class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
 
     </form>

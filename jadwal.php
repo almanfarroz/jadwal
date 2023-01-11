@@ -17,7 +17,7 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Jadwal Perkuliahan Teknik Informatika</title>
     </head>
-    <body style="background-image: url(img/bgpnj.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
+    <body style="background-image: url(images/foto.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
         <div class="body">
             <div class="header">
                 <h2>JADWAL PERKULIAHAN</h2>
