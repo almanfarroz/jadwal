@@ -33,7 +33,7 @@ if ( isset($_POST["submit"]) ) {
     <title>Tambah Data Jadwal</title>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <h1>Tambah Data Mahasiswa</h1>
     <table>
         <tr>
@@ -79,7 +79,7 @@ if ( isset($_POST["submit"]) ) {
         <td></td>
         <td></td>
         <td><button type="submit" name="submit">Tambah</button></td>
+    </div>
 </table>
-</div>
 </body>
 </html>

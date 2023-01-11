@@ -1,5 +1,6 @@
 <?php
 include 'config/koneksi.php';
+
 function query($query){
     global $conn;
     $result = mysqli_query($conn, $query);
@@ -9,6 +10,7 @@ function query($query){
     }
     return $rows;
 }
+
 function tambah($data) {
     global $conn;
 
@@ -26,6 +28,7 @@ function tambah($data) {
     $query = "INSERT INTO jadwal
                 VALUES
                 ('', '$hari', '$slot_waktu', '$kelas', '$dosen', '$ruang', '$mata_kuliah', '$tahun_ajaran', '$semester', '$jumlah_jam')";
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

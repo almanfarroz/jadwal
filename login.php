@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
         <div class="txt_field">
         <input type="text" name="captcha" id="captcha" class="form-control" required>
         <span></span>
-        <label for="captcha">captcha</label>
+        <label for="captcha">Captcha</label>
         </div>
         
         <input type="submit" name="submit" style="margin: 5px" class="btn1">

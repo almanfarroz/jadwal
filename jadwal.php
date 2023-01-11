@@ -15,6 +15,7 @@ session_start();
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="css/upload.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/pagination.css">
         <title>Jadwal Perkuliahan Teknik Informatika</title>
     </head>
     <body style="background-image: url(images/foto.jpg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
@@ -25,7 +26,7 @@ session_start();
                 <a href="logout.php" class="button-1">Admin</a>
             </div>
             <div class="content">
-            <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, "."</h2>"; ?>
+            <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h2>"; ?>
                 <div class="pil">
                     <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
                     <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
@@ -51,11 +52,13 @@ session_start();
 ?>   -->
   <br>
 
+
+            <br>
             <form method="post" align="center" class="search" style="margin:auto;max-width:300px; margin-top:10px">
     <input type="text" name="inputan" placeholder="cari...">
     <button type="submit" name="cari" value="cari"><i class="fa fa-search"></i></button><br>
   </form>
-<br>
+
     <?php
     function search($arr, $query){$no=1;
         foreach ($arr as $value):
@@ -84,6 +87,7 @@ session_start();
         endforeach;
     }  
     ?>
+     <br><br>
                 <table border="2" align="center">
                     <thead>
                         <tr>
@@ -99,13 +103,35 @@ session_start();
                             <th>Jumlah Jam</th>
                         </tr>
                     </thead>
+					
+					<?php 
+					
+                    if(isset($_GET['page']))
+						$page=$_GET['page'];
+					else
+						$page = 1;
+					
+					$total =  mysqli_num_rows(mysqli_query($conn, "SELECT * FROM jadwal"));
+					$jumlah_baris =20;
+					$jumlah_page = $total/$jumlah_baris;
+                    $offset = ($page-1)*$jumlah_baris;
+
+                    //page 1 -> offset 0
+                    //page 2 -> offset 10
+                    //page 3 -> offset 20
+					
+					?>
 
                     <?php
-                    $value = mysqli_query($conn, "SELECT * FROM jadwal");
+                    //$value = mysqli_query($conn, "SELECT * FROM jadwal");
+
+                    $value = mysqli_query($conn, "SELECT * FROM jadwal limit $jumlah_baris offset $offset ");
+
                     ?>
                     <?php if (isset($_POST['cari'])) {search($value, $_POST['inputan']);}else {?>
                     <?php foreach ($value as $value) : ?>
                         <tbody style="height: 3vh;">
+                            <tr>
                                 <td><?php echo $value ['id']; ?></td>
                                 <td><?php echo $value ['hari']; ?></td>
                                 <td><?php echo $value ['slot_waktu']; ?></td>
@@ -120,6 +146,40 @@ session_start();
                         </tbody>
                     <?php endforeach; ?>
                     <?php }; ?>
+                    </table>
+					
+					<br /><br />
+                    <div class="pagination">
+
+                        <?php 
+                        echo '<a href="/jadwal/admin.php?page='.($page-1).'">&laquo;</a>';
+
+                        for($i=0;$i<$jumlah_page;$i++){
+                            if($page == $i+1)
+                                echo '<a class="active" href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
+                            else
+                                echo '<a href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
+                        }
+
+                        echo '<a href="/jadwal/admin.php?page='.($page+1).'">&raquo;</a>';
+                        
+                        ?>
+
+                        <!--
+                            <a href="#">&laquo;</a>
+                            <a href="#">1</a>
+                            <a href="#" class="active">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">&raquo;</a>
+                        -->
+                        
+                    </div> 
+            </div>
+        </div>
+           
     </body>
 </html>
 
