@@ -91,8 +91,8 @@ include 'function/crud.php';
         <td><?= $value["semester"] ?></td>
         <td><?= $value["jumlah_jam"] ?></td>
         <td>
-        <a href="finput_book.php?id=<?php $value['id'] ?>">Ubah</a>
-        <a href="delete_book.php?id=<?php $value['id'] ?>">Delete</a>
+        <a href="edit.php?id=<?php $value['id'] ?>">Ubah</a>
+        <a href="hapus.php?id=<?php $value['id'] ?>">Delete</a>
         </td>
     </tr>
     <?php break;?>
