@@ -85,7 +85,7 @@ if ( isset($_POST["submit"]) ) {
         <td></td>
         <td></td>
         <td><button type="submit" name="submit">Update</button></td>
-    </div>
-</table>
+    </table>
+</div>
 </body>
 </html>
