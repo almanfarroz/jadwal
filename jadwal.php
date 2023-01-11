@@ -26,7 +26,7 @@ session_start();
                 <a href="logout.php" class="button-1">Admin</a>
             </div>
             <div class="content">
-            <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA, " . $_SESSION['username'] ."!". "</h2>"; ?>
+            <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA! " ."</h2>"; ?>
                 <div class="pil">
                     <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
                     <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
