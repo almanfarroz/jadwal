@@ -41,8 +41,10 @@ if ( isset($_POST["submit"]) ) {
     <body>
     <div class="container">
         <h1>Update Data Mahasiswa</h1>
-    <table>
-        <tr>
+        <form action="" method="post">
+
+            <table>
+                <tr>
             <td><label for="hari">Hari</label></td>
             <td>=</td>
             <td><input type="text" name="hari" value="<?= $jadwal["hari"]; ?>"></td>
@@ -86,6 +88,7 @@ if ( isset($_POST["submit"]) ) {
         <td></td>
         <td><button type="submit" name="submit">Update</button></td>
     </table>
+</form>
 </div>
 </body>
 </html>

@@ -36,8 +36,9 @@ if ( isset($_POST["submit"]) ) {
     <div class="container">
         <h1>Tambah Data Mahasiswa</h1>
     <table>
-        <tr>
-            <td><label for="hari">Hari</label></td>
+        <form action="" method="post">  
+            <tr>
+                <td><label for="hari">Hari</label></td>
             <td>=</td>
             <td><input type="text" name="hari"></td>
         </tr>
@@ -79,6 +80,7 @@ if ( isset($_POST["submit"]) ) {
         <td></td>
         <td></td>
         <td><button type="submit" name="submit">Tambah</button></td>
+    </form>
     </div>
 </table>
 </body>
