@@ -29,23 +29,15 @@ if (isset($_POST['upload'])) {
             $semester = $value['8'];
             $jumlah_jam = $value['9'];
 
-            $checkSchedule = "SELECT id FROM jadwal WHERE id ='$id'";
-            $checkSchedule_result = mysqli_query($conn, $checkSchedule);
+            $Schedule = "SELECT id FROM jadwal WHERE id ='$id'";
 
-            if (mysqli_num_rows($checkSchedule_result) > 0) {
-            } else {
-                $in_query = "INSERT INTO jadwal(hari, slot_waktu, kelas, dosen, ruang, mata_kuliah, tahun_ajaran, semester, jumlah_jam ) VALUES('$hari', '$slot_waktu', '$kelas' , '$dosen', '$ruang' ,'$mata_kuliah', '$tahun_ajaran', '$semester', '$jumlah_jam')";
-                $in_result = mysqli_query($conn, $in_query);
-            }
+                $query = "INSERT INTO jadwal(hari, slot_waktu, kelas, dosen, ruang, mata_kuliah, tahun_ajaran, semester, jumlah_jam ) 
+                VALUES('$hari', '$slot_waktu', '$kelas' , '$dosen', '$ruang' ,'$mata_kuliah', '$tahun_ajaran', '$semester', '$jumlah_jam')";
+                $result = mysqli_query($conn, $query);
+            
         }
-
-        if (isset($msg)) {
             $_SESSION['status'] = "File imported successfully";
             header("Location: admin.php");
-        } else {
-            $_SESSION['status'] = "File importing failed";
-            header("Location: admin.php");
-        }
     } else {
         $_SESSION['status'] = "invalid file";
         header("Location: admin.php");
