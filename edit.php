@@ -45,9 +45,7 @@ if ( isset($_POST["submit"]) ) {
 
     <table>
         <tr>
-            <td><label for="id">ID</label></td>
-            <td>=</td>
-            <td><input type="text" name="id" value="<?= $jadwal["id"]; ?>"></td>
+            <td><input type="hidden" name="id" value="<?= $jadwal["id"]; ?>"></td>
         </tr>
         <tr>
             <td><label for="hari">Hari</label></td>

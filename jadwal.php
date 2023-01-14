@@ -27,29 +27,6 @@ session_start();
             </div>
             <div class="content">
             <?php echo "<h2>SELAMAT DATANG DI WEBSITE JADWAL MATA KULIAH TEKNIK INFORMATIKA! " ."</h2>"; ?>
-                <div class="pil">
-                    <button value="kelas"  onclick="location.href='?sort=kelas';">Kelas</button>
-                    <button value="dosen" onclick="location.href='?sort=dosen';">Dosen</button>
-                    <button value="hari" onclick="location.href='?sort=hari';">Hari</button>
-                </div>
-                  <!-- <?php
-
-  if($_POST['sort']=='dosen')
-  {
-      $keys = array_column($value, 'dosen');
-      array_multisort($keys, SORT_ASC, $value);
-  }
-  else if($_POST['sort']=='hari')
-  {
-      $keys = array_column($value, 'hari');
-      array_multisort($keys, SORT_DESC, $value);
-  }
-  else if($_POST['sort']=='kelas')
-  {
-      $keys = array_column($value, 'kelas');
-      array_multisort($keys, SORT_ASC, $value);
-  }
-?>   -->
   <br>
 
 
