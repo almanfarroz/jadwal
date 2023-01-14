@@ -43,6 +43,11 @@ if ( isset($_POST["submit"]) ) {
             <td><input type="text" name="hari"></td>
         </tr>
         <tr>
+            <td><label for="slot_waktu">Slot Waktu</label></td>
+            <td>=</td>
+            <td><input type="text" name="slot_waktu"></td>
+        </tr>
+        <tr>
             <td><label for="kelas">Kelas</label></td>
             <td>=</td>
             <td><input type="text" name="kelas"></td>
@@ -68,7 +73,7 @@ if ( isset($_POST["submit"]) ) {
             <td><input type="text" name="tahun_ajaran"></td>
         </tr>
         <tr>
-            <td><label for="semester">Slot Waktu</label></td>
+            <td><label for="semester">Semester</label></td>
             <td>=</td>
             <td><input type="text" name="semester"></td>
         </tr>

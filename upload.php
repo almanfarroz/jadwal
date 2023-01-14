@@ -33,8 +33,6 @@ if (isset($_POST['upload'])) {
             $checkSchedule_result = mysqli_query($conn, $checkSchedule);
 
             if (mysqli_num_rows($checkSchedule_result) > 0) {
-                $up_query = "UPDATE jadwal SET hari='$hari', slot_waktu='$slot_waktu', kelas='$kelas', dosen='$dosen', ruang='$ruang', mata_kuliah='$mata_kuliah', tahun_ajaran='$tahun_ajaran', semester='$semester', jumlah_jam='$jumlah_jam' WHERE id='$id'";
-                $up_result = mysqli_query($conn, $up_query);
             } else {
                 $in_query = "INSERT INTO jadwal(hari, slot_waktu, kelas, dosen, ruang, mata_kuliah, tahun_ajaran, semester, jumlah_jam ) VALUES('$hari', '$slot_waktu', '$kelas' , '$dosen', '$ruang' ,'$mata_kuliah', '$tahun_ajaran', '$semester', '$jumlah_jam')";
                 $in_result = mysqli_query($conn, $in_query);

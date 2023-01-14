@@ -43,8 +43,13 @@ if ( isset($_POST["submit"]) ) {
         <h1>Update Data Mahasiswa</h1>
         <form action="" method="post">
 
-            <table>
-                <tr>
+    <table>
+        <tr>
+            <td><label for="id">ID</label></td>
+            <td>=</td>
+            <td><input type="text" name="id" value="<?= $jadwal["id"]; ?>"></td>
+        </tr>
+        <tr>
             <td><label for="hari">Hari</label></td>
             <td>=</td>
             <td><input type="text" name="hari" value="<?= $jadwal["hari"]; ?>"></td>
@@ -53,6 +58,11 @@ if ( isset($_POST["submit"]) ) {
             <td><label for="kelas">Kelas</label></td>
             <td>=</td>
             <td><input type="text" name="kelas" value="<?= $jadwal["kelas"]; ?>"></td>
+        </tr>
+        <tr>
+            <td><label for="slot_waktu">Slot Waktu</label></td>
+            <td>=</td>
+            <td><input type="text" name="slot_waktu" value="<?= $jadwal["slot_waktu"]; ?>"></td>
         </tr>
         <tr>
             <td><label for="dosen">Dosen</label></td>
@@ -75,7 +85,7 @@ if ( isset($_POST["submit"]) ) {
             <td><input type="text" name="tahun_ajaran" value="<?= $jadwal["tahun_ajaran"]; ?>"></td>
         </tr>
         <tr>
-            <td><label for="semester">Slot Waktu</label></td>
+            <td><label for="semester">Semester</label></td>
             <td>=</td>
             <td><input type="text" name="semester" value="<?= $jadwal["semester"]; ?>"></td>
         </tr>
