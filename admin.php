@@ -101,6 +101,7 @@ include 'function/test.php';
 					
 					<?php 
 					
+                    // pagination
                     if(isset($_GET['page']))
 						$page=$_GET['page'];
 					else
@@ -148,16 +149,29 @@ include 'function/test.php';
                     <div class="pagination">
 
                         <?php 
-                        echo '<a href="/jadwal/admin.php?page='.($page-1).'">&laquo;</a>';
+                        // URL sesuai dengan nama project
 
-                        for($i=0;$i<$jumlah_page;$i++){
-                            if($page == $i+1)
-                                echo '<a class="active" href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
-                            else
-                                echo '<a href="/jadwal/admin.php?page='.($i+1).'">'.($i+1).'</a>';
+                        echo '<a href="admin.php?page='.($page-1).'">&laquo;</a>';
+
+
+                        if($page<=3){
+                            for($i=1;$i<=5;$i++){
+                                if($page == $i)
+                                    echo '<a class="active" href="admin.php?page='.($i).'">'.($i).'</a>';
+                                else
+                                    echo '<a href="admin.php?page='.($i).'">'.($i).'</a>';
+                            }
                         }
-
-                        echo '<a href="/jadwal/admin.php?page='.($page+1).'">&raquo;</a>';
+                        else{
+                            for($i=$page-2;$i<=$page+2;$i++){
+                                if($page == $i)
+                                    echo '<a class="active" href="admin.php?page='.($i).'">'.($i).'</a>';
+                                else
+                                    echo '<a href="admin.php?page='.($i).'">'.($i).'</a>';
+                            }
+                        }
+                            
+                        echo '<a href="admin.php?page='.($page+1).'">&raquo;</a>';
                         
                         ?>
 
