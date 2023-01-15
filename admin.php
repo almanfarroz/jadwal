@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
  header("Location: login.php");
 }
 include 'function/crud.php';
-
+include 'function/test.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
