@@ -36,10 +36,8 @@ if (isset($_POST['upload'])) {
                 $result = mysqli_query($conn, $query);
             
         }
-            $_SESSION['status'] = "File imported successfully";
             header("Location: admin.php");
     } else {
-        $_SESSION['status'] = "invalid file";
         header("Location: admin.php");
         exit(0);
     }
