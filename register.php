@@ -72,7 +72,7 @@ echo $_POST['cpassword']; ?>" required>
  <div class="input-group">
  <button name="submit" class="btn1">Register</button>
  </div>
- <p class="login-register-text" style="text-align:center">Anda sudah punya akun? <a href="login.php">Login </a></p>
+ <p class="login-register-text" style="text-align:center;padding-bottom:30px;">Anda sudah punya akun? <a href="login.php">Login </a></p>
  </form>
  </div>
 </body>

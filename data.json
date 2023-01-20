@@ -120,18 +120,6 @@
         "jumlah_jam": "2"
     },
     {
-        "id": "11",
-        "hari": "Selasa",
-        "slot_waktu": "12.45-13.35",
-        "kelas": "TI 1A",
-        "dosen": "Dewi",
-        "ruang": "GSG202",
-        "mata_kuliah": "Bahasa Inggris TIK 1",
-        "tahun_ajaran": "2022\/2023",
-        "semester": "1",
-        "jumlah_jam": "4"
-    },
-    {
         "id": "12",
         "hari": "Selasa",
         "slot_waktu": "13.35-14.25",

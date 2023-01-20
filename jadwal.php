@@ -3,6 +3,34 @@
 include 'config/koneksi.php';
 session_start();
 
+$query = "SELECT * FROM jadwal";
+
+    $hari = isset($_GET["hari"]) ? $_GET["hari"] : "";
+    $kelas = isset($_GET["kelas"]) ? $_GET["kelas"] : "";  
+    $ruang = isset($_GET["ruang"]) ? $_GET["ruang"] : "";  
+    $mata_kuliah = isset($_GET["mata_kuliah"]) ? $_GET["mata_kuliah"] : "";  
+    $nama_dosen = isset($_GET["nama_dosen"]) ? $_GET["nama_dosen"] : "";  
+
+    if($hari != "" || $kelas != ""  || $ruang != ""  || $mata_kuliah != ""  || $nama_dosen != ""){
+        $query .= " WHERE ";
+
+        if($hari != ""){
+            $queryLike[] = "hari LIKE '%$hari%'";
+        }
+        if($kelas != ""){
+            $queryLike[] = "kelas LIKE '%$kelas%'";
+        }
+        if($ruang != ""){
+            $queryLike[] = "ruang LIKE '%$ruang%'";
+        }
+        if($mata_kuliah != ""){
+            $queryLike[] = "mata_kuliah LIKE '%$mata_kuliah%'";
+        }
+        if($nama_dosen != ""){
+            $queryLike[] = "dosen LIKE '%$nama_dosen%'";
+        }
+        $query .= implode(" AND ", $queryLike);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,39 +59,21 @@ session_start();
 
 
             <br>
-            <form method="post" align="center" class="search" style="margin:auto;max-width:300px; margin-top:10px">
-    <input type="text" name="inputan" placeholder="cari...">
-    <button type="submit" name="cari" value="cari"><i class="fa fa-search"></i></button><br>
-  </form>
 
-    <?php
-    function search($arr, $query){$no=1;
-        foreach ($arr as $value):
-        foreach($value as $data):
-            if(str_contains($data, $query)):
-    ?>
-    <tbody style="height: 3vh;">
-    <tr>
-        <td><?= $no++ ?></td>
-        <td><?= $value["hari"] ?></td>
-        <td><?= $value["slot_waktu"] ?></td>
-        <td><?= $value["kelas"] ?></td>
-        <td><?= $value["dosen"] ?></td>
-        <td><?= $value["ruang"] ?></td>
-        <td><?= $value["mata_kuliah"] ?></td>
-        <td><?= $value["tahun_ajaran"] ?></td>
-        <td><?= $value["semester"] ?></td>
-        <td><?= $value["jumlah_jam"] ?></td>
-    </tr>
-    <?php break;?>
-    </tbody>
 
-    <?php 
-        endif;
-        endforeach;
-        endforeach;
-    }  
-    ?>
+                <form method="get" align="center" class="search" style="margin:auto; margin-top:10px;display:grid; grid-template-columns: auto auto auto;">
+                    <input type="text" style="margin-bottom: 10px;" class="form-control" name="hari" id="hari" placeholder="Pencarian Hari" autocomplete="off" value="<?= $hari ?>">
+
+                    <input type="text" style="margin-bottom: 10px;" class="form-control" name="kelas" id="kelas" placeholder="Pencarian Kelas" autocomplete="off" value="<?= $kelas ?>">
+
+                    <input type="text" style="margin-bottom: 10px;" class="form-control" name="ruang" id="ruang" placeholder="Pencarian Ruang" autocomplete="off" value="<?= $ruang ?>">
+
+                    <input type="text" style="margin-bottom: 10px;" class="form-control" name="mata_kuliah" id="mata_kuliah" placeholder="Pencarian Mata Kuliah" autocomplete="off" value="<?= $mata_kuliah ?>">
+                
+                    <input type="text" style="margin-bottom: 10px;" class="form-control" name="nama_dosen" id="nama_dosen" placeholder="Pencarian Dosen" autocomplete="off" value="<?= $nama_dosen ?>">
+                
+                    <button type="submit" name="cari" value="cari" style="width: 80%;">Cari</button>    
+                </form>
      <br><br>
                 <table border="2" align="center">
                     <thead>
@@ -96,16 +106,9 @@ session_start();
                     //page 1 -> offset 0
                     //page 2 -> offset 10
                     //page 3 -> offset 20
-					
+
+					$value = mysqli_query($conn, "$query LIMIT $jumlah_baris OFFSET $offset ");
 					?>
-
-                    <?php
-                    //$value = mysqli_query($conn, "SELECT * FROM jadwal");
-
-                    $value = mysqli_query($conn, "SELECT * FROM jadwal limit $jumlah_baris offset $offset ");
-
-                    ?>
-                    <?php if (isset($_POST['cari'])) {search($value, $_POST['inputan']);}else {?>
                     <?php foreach ($value as $value) : ?>
                         <tbody style="height: 3vh;">
                             <tr>
@@ -122,54 +125,43 @@ session_start();
                             </tr>
                         </tbody>
                     <?php endforeach; ?>
-                    <?php }; ?>
                     </table>
 					
 					<br /><br />
                     <div class="pagination">
 
-                    <?php 
-                        // URL sesuai dengan nama project
+                    <?php
 
-                        echo '<a href="jadwal.php?page='.($page-1).'">&laquo;</a>';
-
-
-                        if($page<=3){
-                            for($i=1;$i<=5;$i++){
-                                if($page == $i)
-                                    echo '<a class="active" href="jadwal.php?page='.($i).'">'.($i).'</a>';
-                                else
-                                    echo '<a href="jadwal.php?page='.($i).'">'.($i).'</a>';
-                            }
+                    $paginateQuery = "";
+                    $paginateQuery .= $hari != "" ? "&hari=$hari" : "";
+                    $paginateQuery .= $kelas != "" ? "&kelas=$kelas" : "";
+                    $paginateQuery .= $ruang != "" ? "&ruang=$ruang" : "";
+                    $paginateQuery .= $mata_kuliah != "" ? "&mata_kuliah=$mata_kuliah" : "";
+                    $paginateQuery .= $nama_dosen != "" ? "&nama_dosen=$nama_dosen" : "";
+                    // URL sesuai dengan nama project
+                    echo '<a href="jadwal.php?page='.($page-1).($paginateQuery).'">&laquo;</a>';
+                    if($page<=3){
+                        for($i=1;$i<=5;$i++){
+                            if($page == $i)
+                                echo '<a class="active" href="jadwal.php?page='.($i).($paginateQuery).'">'.($i).'</a>';
+                            else
+                                echo '<a href="jadwal.php?page='.($i).($paginateQuery).'">'.($i).'</a>';
                         }
-                        else{
-                            for($i=$page-2;$i<=$page+2;$i++){
-                                if($page == $i)
-                                    echo '<a class="active" href="jadwal.php?page='.($i).'">'.($i).'</a>';
-                                else
-                                    echo '<a href="jadwal.php?page='.($i).'">'.($i).'</a>';
+                    }
+                    else{
+                        for($i=$page-2;$i<=$page+2;$i++){
+                            if($page == $i)
+                                echo '<a class="active" href="jadwal.php?page='.($i).($paginateQuery).'">'.($i).'</a>';
+                            else
+                                echo '<a href="jadwal.php?page='.($i).($paginateQuery).'">'.($i).'</a>';
                             }
-                        }
-                            
-                        echo '<a href="jadwal.php?page='.($page+1).'">&raquo;</a>';
-                        
-                        ?>
-
-                        <!--
-                            <a href="#">&laquo;</a>
-                            <a href="#">1</a>
-                            <a href="#" class="active">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#">&raquo;</a>
-                        -->
+                    }
+                    echo '<a href="jadwal.php?page='.($page+1).'">&raquo;</a>';
+                    ?>
                         
                     </div> 
             </div>
-        </div>
-           
+        </div>  
     </body>
 </html>
 
